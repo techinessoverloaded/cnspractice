@@ -1,0 +1,53 @@
+import java.util.*; 
+
+public class Main {
+    public static void main(String args[]) { 
+        Scanner sc = new Scanner(System.in); 
+        System.out.print("Enter the plain text: "); 
+        String pl = sc.nextLine();
+        sc.close(); 
+        String s = ""; 
+        int start = 0;
+        
+        for (int i = 0; i < pl.length(); i++) { 
+            if (pl.charAt(i) == ' ') {
+                s += pl.substring(start, i); 
+                start = i + 1;
+            }
+        }
+        s += pl.substring(start);
+        System.out.println("Plain Text: " + s); 
+
+        int k = s.length(); 
+        int l = 0;
+        int col = 4;
+        int row = (k / col) + 1;
+        char ch[][] = new char[row][col];
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) { 
+                if (l < k) {
+                    ch[i][j] = s.charAt(l); 
+                    l++;
+                } else {
+                    ch[i][j] = '#';
+                }
+            }
+        }
+
+        char trans[][] = new char[col][row]; 
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) { 
+                trans[j][i] = ch[i][j];
+            }
+        }
+
+        System.out.print("Cipher Text: ");
+        for (int i = 0; i < col; i++) { 
+            for (int j = 0; j < row; j++) {
+                System.out.print(trans[i][j]);
+            }
+        }
+    }
+}
+    
